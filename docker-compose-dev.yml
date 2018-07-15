@@ -21,7 +21,6 @@ services:
     links:
       - users-db
 
-
   users-db:
     container_name: users-db
     build:
@@ -32,4 +31,14 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      
+  
+  nginx:
+    container_name: nginx
+    build: ./services/nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - users
+  
+  
