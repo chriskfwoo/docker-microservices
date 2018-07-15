@@ -15,7 +15,6 @@ def add_user(username, email):
 class TestUserService(BaseTestCase):
     """ Tests for Users Service """
 
-
     def test_users(self):
         """ Ensure the /ping route behaves correctly """
 
@@ -25,7 +24,6 @@ class TestUserService(BaseTestCase):
         self.assertIn('pong!', data['message'])
         self.assertIn('success', data['status'])
 
-    
     def test_add_user(self):
         """ Ensure a new user can be added to the database """
 
@@ -43,7 +41,6 @@ class TestUserService(BaseTestCase):
             self.assertIn('chriswoo@gmail.com', data['message'])
             self.assertIn('succes', data['status'])
 
-
     def test_add_user_invalid_json(self):
         """ Ensure error is thrown if the JSON object is empty """
 
@@ -58,9 +55,10 @@ class TestUserService(BaseTestCase):
             self.assertIn('Invalid payload', data['message'])
             self.assertIn('fail', data['status'])
 
-    
     def test_add_user_invalid_json_keys(self):
-        """ Ensure error is thrown if the JSON object does not have a username key """
+        """
+        Ensure error is thrown if the JSON object does not have a username key
+        """
 
         with self.client:
             response = self.client.post(
@@ -73,7 +71,6 @@ class TestUserService(BaseTestCase):
             self.assertIn('Invalid payload.', data['message'])
             self.assertIn('fail', data['status'])
 
-    
     def test_add_user_duplicate_email(self):
         """ Ensure error is thrown if the email already exists """
 
@@ -101,7 +98,6 @@ class TestUserService(BaseTestCase):
             self.assertIn('Sorry. That email already exists.', data['message'])
             self.assertIn('fail', data['status'])
 
-
     def test_single_user(self):
         """ Ensure get single user behaves correctly """
 
@@ -114,7 +110,6 @@ class TestUserService(BaseTestCase):
             self.assertIn('chriswoo@gmail.com', data['data']['email'])
             self.assertIn('success', data['status'])
 
-    
     def test_single_user_no_id(self):
         """ Ensure error is thrown if an id is not provided """
 
@@ -125,7 +120,6 @@ class TestUserService(BaseTestCase):
             self.assertIn('User does not exist', data['message'])
             self.assertIn('fail', data['status'])
 
-    
     def test_single_user_incorrect_id(self):
         """ Ensure error is thrown if the id does not exist """
 
@@ -136,7 +130,6 @@ class TestUserService(BaseTestCase):
             self.assertIn('User does not exist', data['message'])
             self.assertIn('fail', data['status'])
 
-    
     def test_all_users(self):
         """ Ensure get all users behaves correctly """
 
@@ -149,9 +142,11 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(data['data']['users']), 2)
             self.assertIn('chriswoo', data['data']['users'][0]['username'])
-            self.assertIn('chriswoo@gmail.com', data['data']['users'][0]['email'])
+            self.assertIn('chriswoo@gmail.com',
+                          data['data']['users'][0]['email'])
             self.assertIn('johndoe', data['data']['users'][1]['username'])
-            self.assertIn('johndoe@gmail.com', data['data']['users'][1]['email'])
+            self.assertIn('johndoe@gmail.com',
+                          data['data']['users'][1]['email'])
             self.assertIn('success', data['status'])
 
 
