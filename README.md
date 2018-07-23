@@ -1,6 +1,7 @@
 # docker-microservices
 
-[![Build Status](https://travis-ci.org/chriskfwoo/microservices-docker.svg?branch=master)](https://travis-ci.org/chriskfwoo/microservices-docker)
+[![Build Status](https://travis-ci.org/chriskfwoo/docker-microservices.svg?branch=master)](https://travis-ci.org/chriskfwoo/docker-microservices)
+
 
 ## Overview
 - Developed a code evaluation tool for code exercises
